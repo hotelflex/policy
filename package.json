@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "main": "src",
   "scripts": {
-    "lint": "prettier src/*",
-    "lint:fix": "prettier --write src/*",
-    "precommit-msg": "echo 'Running linter...' && exit 0"
+    "precommit": "pretty-quick --staged"
   },
-  "pre-commit": [ "precommit-msg", "lint:fix" ],
   "devDependencies": {
+    "husky": "^0.14.3",
     "prettier": "1.13.7",
-    "pre-commit": "^1.2.2"
+    "pretty-quick": "^1.6.0"
   },
   "prettier": {
     "semi": false,
