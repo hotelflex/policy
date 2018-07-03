@@ -1,0 +1,24 @@
+{
+  "name": "@hotelflex/policy",
+  "version": "1.0.0",
+  "main": "src",
+  "scripts": {
+    "lint": "prettier src/*",
+    "lint:fix": "prettier --write src/*",
+    "precommit-msg": "echo 'Running linter...' && exit 0"
+  },
+  "pre-commit": [ "precommit-msg", "lint:fix" ],
+  "devDependencies": {
+    "prettier": "1.13.7",
+    "pre-commit": "^1.2.2"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "engines": {
+    "node": ">=8.0.0 <9.0.0",
+    "npm": ">=4.0.5 <5.0.0"
+  }
+}
