@@ -1,6 +1,6 @@
 {
   "name": "@hotelflex/policy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "src",
   "scripts": {
     "precommit": "pretty-quick --staged"
@@ -14,9 +14,5 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "all"
-  },
-  "engines": {
-    "node": ">=8.0.0 <9.0.0",
-    "npm": ">=4.0.5 <5.0.0"
   }
 }
