@@ -4,12 +4,18 @@ class Policy {
   constructor(policy) {
     this.policy = policy || this.validate.bind(this)
     this.allowRoot = false
+    this.allowPublic = false
     this.allowHotelierRoles = []
     this.allowHotelflexRoles = []
     this.exec = this.exec.bind(this)
 
     this.exec.allowRoot = (function() { 
       this.allowRoot = true
+      return this.exec 
+    }).bind(this)
+
+    this.exec.allowPublic = (function() { 
+      this.allowPublic = true
       return this.exec 
     }).bind(this)
 
@@ -27,9 +33,12 @@ class Policy {
   }
   validate(session, hotelId) {
     var allowRoot = this.allowRoot
+    var allowPublic = this.allowPublic
     var allowHotelierRoles = this.allowHotelierRoles
     var allowHotelflexRoles = this.allowHotelflexRoles
-    return (allowRoot && session.isRoot)
+    return allowPublic
+      //check root
+      || (allowRoot && session.isRoot)
       //check hotelflex roles
       || (allowHotelflexRoles.length > 0
         && session.permissions.filter(function(p) {
