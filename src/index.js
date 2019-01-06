@@ -1,5 +1,15 @@
 const Errors = require('./Errors')
 
+function normalizeSession(session) {
+  if (!session || session !== Object(session)) return { permissions: [] }
+
+  if (!Array.isArray(session.permissions)) {
+    session.permissions = []
+  }
+
+  return session
+}
+
 class Policy {
   constructor() {
     this.exec = this.exec.bind(this)
@@ -37,11 +47,12 @@ class Policy {
   }
 
   exec(session, opts = {}) {
+    session = normalizeSession(session)
+
     if (this._allowPublic) return
-
-    if (!session) throw new Errors.Unauthorized()
-
     if (this._allowRoot && session.isRoot) return
+
+    session.permissions = session.permissions || []
 
     for (let i = 0; i < this._hotelflexRoles.length; i++) {
       const role = this._hotelflexRoles[i]
