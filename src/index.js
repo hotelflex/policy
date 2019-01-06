@@ -52,8 +52,6 @@ class Policy {
     if (this._allowPublic) return
     if (this._allowRoot && session.isRoot) return
 
-    session.permissions = session.permissions || []
-
     for (let i = 0; i < this._hotelflexRoles.length; i++) {
       const role = this._hotelflexRoles[i]
       const matches = session.permissions.filter(
