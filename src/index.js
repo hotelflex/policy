@@ -15,8 +15,8 @@ class Policy {
     this.exec = this.exec.bind(this)
     this.exec.allowRoot = this.allowRoot.bind(this)
     this.exec.allowPublic = this.allowPublic.bind(this)
-    this.exec.allowHotelflexRole = this.allowHotelflexRole.bind(this)
-    this.exec.allowHotelierRole = this.allowHotelierRole.bind(this)
+    this.exec.allowHotelflex = this.allowHotelflex.bind(this)
+    this.exec.allowHotelier = this.allowHotelier.bind(this)
 
     this._allowRoot = false
     this._allowPublic = false
@@ -36,12 +36,12 @@ class Policy {
     return this.exec
   }
 
-  allowHotelflexRole(role) {
+  allowHotelflex(role) {
     this._hotelflexRoles.push(role)
     return this.exec
   }
 
-  allowHotelierRole(role) {
+  allowHotelier(role) {
     this._hotelierRoles.push(role)
     return this.exec
   }
