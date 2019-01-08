@@ -69,10 +69,7 @@ class Policy {
     for (let i = 0; i < this._hotelflexRoles.length; i++) {
       const role = this._hotelflexRoles[i]
       const matches = session.permissions.filter(
-        p =>
-          p.entityId === opts.hotelId &&
-          p.type === 'HOTELFLEX' &&
-          p.role === role,
+        p => p.type === 'HOTELFLEX' && p.role === role,
       )
 
       if (matches.length > 0) return
