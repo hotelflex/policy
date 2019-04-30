@@ -1,4 +1,4 @@
-const Errors = require('./Errors')
+const PolicyError = require('./PolicyError')
 
 function normalizeSession(session) {
   if (!session || session !== Object(session)) return { permissions: [] }
@@ -87,10 +87,10 @@ class Policy {
       if (matches.length > 0) return
     }
 
-    throw new Errors.Unauthorized()
+    throw new PolicyError()
   }
 }
 
-Policy.Errors = Errors
+Policy.Error = PolicyError
 
 module.exports = Policy
