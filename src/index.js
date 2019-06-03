@@ -16,6 +16,7 @@ class Policy {
     this.exec.allowRoot = this.allowRoot.bind(this)
     this.exec.allowPublic = this.allowPublic.bind(this)
     this.exec.allowSessionOwner = this.allowSessionOwner.bind(this)
+    this.exec.allowAccountOwner = this.allowAccountOwner.bind(this)
     this.exec.allowHotelflex = this.allowHotelflex.bind(this)
     this.exec.allowHotelier = this.allowHotelier.bind(this)
 
@@ -43,6 +44,11 @@ class Policy {
     return this.exec
   }
 
+  allowAccountOwner() {
+    this._allowAccountOwner = true
+    return this.exec
+  }
+
   allowHotelflex(role) {
     this._hotelflexRoles.push(role)
     return this.exec
@@ -63,6 +69,13 @@ class Policy {
       this._allowSessionOwner &&
       session.id === opts.sessionId &&
       opts.sessionId
+    )
+      return
+
+    if (
+      this._allowAccountOwner &&
+      session.accountId === opts.accountId &&
+      opts.accountId
     )
       return
 
